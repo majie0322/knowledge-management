@@ -5,12 +5,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.CoreConnectionPNames;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -56,7 +57,8 @@ public class HttpClientUtil {
             boolean isDelete = "delete".equalsIgnoreCase(requestMethod);
 
             //创建HttpClient连接对象
-            DefaultHttpClient client = new DefaultHttpClient();
+            CloseableHttpClient client = HttpClients.createDefault();
+            //DefaultHttpClient client = new DefaultHttpClient();
             HttpRequestBase method = null;
             if(isGet){
                 url += "?" + parameters;
@@ -75,7 +77,11 @@ public class HttpClientUtil {
                 url += "?" + parameters;
                 method = new HttpDelete(url);
             }
-            method.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 6000);
+
+            //设置请求和传输超时时间
+            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(6000).build();
+            method.setConfig(requestConfig);
+            //method.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 6000);
             //设置参数内容类型
             method.addHeader("Content-Type","application/x-www-form-urlencoded");
             //httpClient本地上下文
