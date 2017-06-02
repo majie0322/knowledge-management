@@ -34,21 +34,24 @@ public class HttpClientUtil {
      * @return String 返回结果
      * </pre>
      */
-    public static String httpRequestToString(String url, String requestMethod,
-                                             Map<String, String> params, String ...auth){
+    public static String httpRequestToString(String url, String requestMethod, Map<String, String> params,
+            String... auth) {
         //接口返回结果
         String methodResult = null;
         try {
+
             String parameters = "";
+            StringBuilder builder = new StringBuilder(parameters);
             boolean hasParams = false;
             //将参数集合拼接成特定格式，如name=zhangsan&age=24
-            for(String key : params.keySet()){
+            for (String key : params.keySet()) {
                 String value = URLEncoder.encode(String.valueOf(params.get(key)), "UTF-8");
-                parameters += key +"="+ value +"&";
+                builder.append(key).append("=").append(value).append("&");
                 hasParams = true;
             }
-            if(hasParams){
-                parameters = parameters.substring(0, parameters.length()-1);
+            String result = builder.toString();
+            if (hasParams) {
+                parameters = result.substring(0, result.length() - 1);
             }
             //是否为GET方式请求
             boolean isGet = "get".equalsIgnoreCase(requestMethod);
@@ -58,22 +61,21 @@ public class HttpClientUtil {
 
             //创建HttpClient连接对象
             CloseableHttpClient client = HttpClients.createDefault();
-            //DefaultHttpClient client = new DefaultHttpClient();
             HttpRequestBase method = null;
-            if(isGet){
+            if (isGet) {
                 url += "?" + parameters;
                 method = new HttpGet(url);
-            }else if(isPost){
+            } else if (isPost) {
                 method = new HttpPost(url);
                 HttpPost postMethod = (HttpPost) method;
                 StringEntity entity = new StringEntity(parameters);
                 postMethod.setEntity(entity);
-            }else if(isPut){
+            } else if (isPut) {
                 method = new HttpPut(url);
                 HttpPut putMethod = (HttpPut) method;
                 StringEntity entity = new StringEntity(parameters);
                 putMethod.setEntity(entity);
-            }else if(isDelete){
+            } else if (isDelete) {
                 url += "?" + parameters;
                 method = new HttpDelete(url);
             }
@@ -81,15 +83,14 @@ public class HttpClientUtil {
             //设置请求和传输超时时间
             RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(6000).build();
             method.setConfig(requestConfig);
-            //method.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 6000);
             //设置参数内容类型
-            method.addHeader("Content-Type","application/x-www-form-urlencoded");
+            method.addHeader("Content-Type", "application/x-www-form-urlencoded");
             //httpClient本地上下文
             HttpClientContext context = null;
-            if(!(auth==null || auth.length==0)){
+            if (!(auth == null || auth.length == 0)) {
                 String username = auth[0];
                 String password = auth[1];
-                UsernamePasswordCredentials credt = new UsernamePasswordCredentials(username,password);
+                UsernamePasswordCredentials credt = new UsernamePasswordCredentials(username, password);
                 //凭据提供器
                 CredentialsProvider provider = new BasicCredentialsProvider();
                 //凭据的匹配范围
@@ -100,13 +101,13 @@ public class HttpClientUtil {
             //访问接口，返回状态码
             HttpResponse response = client.execute(method, context);
             //返回状态码200，则访问接口成功
-            if(response.getStatusLine().getStatusCode()==200){
+            if (response.getStatusLine().getStatusCode() == 200) {
                 methodResult = EntityUtils.toString(response.getEntity());
             }
             client.close();
-        }catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return methodResult;
