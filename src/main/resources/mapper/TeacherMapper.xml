@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.management.dao.BdTeacherDao">
+	<resultMap id="TeacherMap" type="com.management.entity.BdTeacher">
+    	<result column="id" jdbcType="BIGINT" property="id" />
+   		<result column="schoolId" jdbcType="BIGINT" property="schoolId" />
+    	<result column="courseId" jdbcType="BIGINT" property="courseId" />
+    	<result column="teacherNo" jdbcType="BIGINT" property="teacherNo" />
+    	<result column="teacherName" jdbcType="VARCHAR" property="teacherName" />
+    	<result column="sex" jdbcType="INTEGER" property="sex" />
+    	<result column="age" jdbcType="INTEGER" property="age" />
+    	<result column="level" jdbcType="VARCHAR" property="level" />
+    	<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    	<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	
+	<select id="findTeacherByLinkId" resultMap="TeacherMap" parameterType="Long">
+   		SELECT
+   			id,
+   			schoolId,
+   			courseId,
+   			teacherNo,
+   			teacherName,
+   			sex,
+   			age,
+   			level,
+   			createTime,
+   			remark
+   		FROM
+   			bd_teacher
+   		WHERE
+   			id = #{linkId}
+   	</select>
+
+</mapper>

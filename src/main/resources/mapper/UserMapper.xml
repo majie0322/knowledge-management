@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.management.dao.BdUserDao">
+    <resultMap id="userMap" type="com.management.entity.BdUser">
+        <result column="id" jdbcType="BIGINT" property="id" />
+    	<result column="username" jdbcType="VARCHAR" property="username" />
+    	<result column="password" jdbcType="VARCHAR" property="password" />
+    	<result column="type" jdbcType="INTEGER" property="type" />
+    	<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    	<result column="linkId" jdbcType="BIGINT" property="linkId"/>
+    </resultMap>
+ 
+   <select id="findUserById" resultMap="userMap" parameterType="Long">
+		SELECT
+			id,
+			username,
+			password,
+			type,
+			createTime,
+			linkId
+		FROM
+			bd_user
+		WHERE
+			id = #{id}
+   </select>
+   
+   <select id="findUserByName" resultMap="userMap" parameterType="String">
+		SELECT
+			id,
+			username,
+			password,
+			type,
+			createTime,
+			linkId
+		FROM
+			bd_user
+		WHERE
+			username = #{username}
+   </select>
+ 
+</mapper> 
