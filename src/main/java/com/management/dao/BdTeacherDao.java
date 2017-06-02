@@ -12,6 +12,6 @@ import com.management.entity.BdTeacher;
 @MapperInfo(dbType = DBEnum.MYSQL,env = EnvEnum.TEST,refTable = "bd_teacher")
 public interface BdTeacherDao {
 	
-	public BdTeacher findTeacherByLinkId(Long linkId);
+	BdTeacher findTeacherByLinkId(Long linkId);
 
 }

@@ -1,4 +1,4 @@
-package com.management.serviceImpl;
+package com.management.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.huizhi.bd.common.entity.RuiZhiLoginResult;

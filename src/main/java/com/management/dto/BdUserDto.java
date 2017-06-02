@@ -1,6 +1,5 @@
 package com.management.dto;
 
-import com.huizhi.bd.common.entity.User;
 import com.management.entity.BdUser;
 
 import java.sql.Timestamp;

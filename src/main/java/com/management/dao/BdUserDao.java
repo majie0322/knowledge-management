@@ -10,7 +10,7 @@ import com.management.entity.BdUser;
  */
 @MapperInfo(dbType = DBEnum.MYSQL,env = EnvEnum.TEST,refTable = "bd_user")
 public interface BdUserDao {
-    public BdUser findUserById(Long id);
+    BdUser findUserById(Long id);
 
-    public BdUser findUserByName(String username);
+    BdUser findUserByName(String username);
 }

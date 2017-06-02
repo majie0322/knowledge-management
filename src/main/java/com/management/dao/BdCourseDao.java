@@ -4,7 +4,6 @@ import com.management.annotation.MapperInfo;
 import com.management.constant.DBEnum;
 import com.management.constant.EnvEnum;
 import com.management.entity.BdCourse;
-import org.springframework.stereotype.Repository;
 
 /**
  * 科目
