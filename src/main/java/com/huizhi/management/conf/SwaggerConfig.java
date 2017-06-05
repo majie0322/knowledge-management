@@ -12,8 +12,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @author onlyo
  * 使用swagger来管理restful接口文档
+ *  * @author onlyo
  */
 @Configuration
 @EnableSwagger2

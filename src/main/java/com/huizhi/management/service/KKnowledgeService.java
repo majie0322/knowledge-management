@@ -1,5 +1,6 @@
 package com.huizhi.management.service;
 
+import com.huizhi.management.dto.KnowledgeDto;
 import com.huizhi.management.entity.Knowledge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +17,11 @@ public interface KKnowledgeService {
      * @return 知识点
      */
     Knowledge findKnowledgeById(Long id);
+
+    /**
+     * 新增字节点
+     * @param knowledgeDto
+     * @return
+     */
+    Knowledge addKnowledge(KnowledgeDto knowledgeDto);
 }

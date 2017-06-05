@@ -23,4 +23,12 @@ public interface KKnowledgeDao extends GraphRepository<Knowledge> {
      */
     @Query("MATCH (k:Knowledge) WHERE id(k) = {id} RETURN k")
     Knowledge findKnowledgeById(@Param("id")Long id);
+
+    /**
+     * 将某知识点与某科目建立关系
+     * @param courseId
+     * @param knowledgeId
+     */
+    @Query("MATCH (k:Knowledge),(c:Course) WHERE id(c) = {courseId} and id(k) = {knowledgeId} CREATE (c)<-[b:BELONG{type:'BELONG'}]-(k)")
+    void addRelation(@Param("courseId")Long courseId,@Param("knowledgeId")  Long knowledgeId);
 }

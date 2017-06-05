@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * neo4j数据库配置
+ * @author onlyo
  */
 @org.springframework.context.annotation.Configuration
 @EnableNeo4jRepositories(basePackages = "com.huizhi.management.dao")
 @EnableTransactionManagement
-public class MyNeo4jConfig extends Neo4jConfiguration {
+public class Neo4jConfig extends Neo4jConfiguration {
 
     private static String DOMAIN_PACKAGE = "com.huizhi.management.entity";
 

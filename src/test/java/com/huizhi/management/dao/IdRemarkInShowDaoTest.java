@@ -10,21 +10,21 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class KKnowledgeDaoTest {
-
-
+public class IdRemarkInShowDaoTest {
 
     @Autowired
-    private KKnowledgeDao kKnowledgeDao;
+    private IdRemarkInShowDao idRemarkInShowDao;
 
     @Test
-    public void findKnowledgeById() throws Exception {
-        System.out.println(kKnowledgeDao.findKnowledgeById(83L));
+    public void add() throws Exception {
+
     }
 
-    @Test
-    public void addRelation() throws Exception {
-        kKnowledgeDao.addRelation(6L,5733L);
+    @Test public void findIdRemarkInShow() throws Exception {
+        System.out.println(idRemarkInShowDao.findIdRemarkInShow());
+    }
+
+    @Test public void updeteIdRemarkInShow() throws Exception {
     }
 
 }

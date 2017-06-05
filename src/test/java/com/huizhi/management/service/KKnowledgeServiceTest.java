@@ -1,5 +1,6 @@
 package com.huizhi.management.service;
 
+import com.huizhi.management.entity.Knowledge;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,11 @@ public class KKnowledgeServiceTest {
     @Autowired
     private KKnowledgeService kKnowledgeService;
 
+
     @Test
     public void findKnowledgeById() throws Exception {
         System.out.println(kKnowledgeService.findKnowledgeById(83L));
     }
+
 
 }

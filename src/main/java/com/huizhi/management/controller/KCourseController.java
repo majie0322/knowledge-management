@@ -28,7 +28,7 @@ public class KCourseController {
     @Autowired
     private KCourseService kCourseService;
 
-    @RequestMapping(value = "/findAllCourse",method = RequestMethod.POST)
+    @RequestMapping(value = "/findAllCourse", method = RequestMethod.POST)
     @ApiOperation(value="查看所有科目")
     public ResultDto findAllCourse(){
         List<Course> courseList = kCourseService.findAllCourse();

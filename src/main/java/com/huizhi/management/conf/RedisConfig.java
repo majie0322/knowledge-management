@@ -13,6 +13,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * redis配置
+ * @author onlyo
  */
 @Configuration
 @PropertySource("classpath:redis.properties")

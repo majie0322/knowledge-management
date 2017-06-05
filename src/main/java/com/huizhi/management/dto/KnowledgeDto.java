@@ -1,5 +1,6 @@
 package com.huizhi.management.dto;
 
+import com.huizhi.management.entity.Knowledge;
 import org.neo4j.ogm.annotation.GraphId;
 
 import java.io.Serializable;
@@ -274,5 +275,29 @@ public class KnowledgeDto implements Serializable{
 
     public void setCourseId(Long courseId) {
         this.courseId = courseId;
+    }
+
+    public static Knowledge from(KnowledgeDto dto){
+        Knowledge knowledge = null;
+        if(dto != null){
+            knowledge = new Knowledge();
+            knowledge.setId(dto.getId());
+            knowledge.setTeacherId(dto.getTeacherId());
+            knowledge.setSchoolId(dto.getSchoolId());
+            knowledge.setIsBase(dto.getIsBase());
+            knowledge.setName(dto.getName());
+            knowledge.setDescription(dto.getDescription());
+            knowledge.setLevel(dto.getLevel());
+            knowledge.setTermNumber(dto.getTermNumber());
+            knowledge.setGradeId(dto.getGradeId());
+            knowledge.setGradeSection(dto.getGradeSection());
+            knowledge.setRzNo(dto.getRzNo());
+            knowledge.setRzKid(dto.getRzKid());
+            knowledge.setRzParentId(dto.getRzParentId());
+            knowledge.setRzGradation(dto.getRzGradation());
+            knowledge.setRzEnd(dto.getRzEnd());
+            knowledge.setCourseId(dto.getCourseId());
+        }
+        return knowledge;
     }
 }
