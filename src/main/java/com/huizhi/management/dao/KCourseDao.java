@@ -32,5 +32,15 @@ public interface KCourseDao extends GraphRepository<Course> {
      * @return 课程
      */
     @Query("MATCH(c:Course) WHERE c.courseId = {courseId} RETURN c")
-    Course findCourseById(@Param("courseId")Long courseId);
+    Course findCourseBySubjectId(@Param("courseId")Long courseId);
+
+    /**
+     * 通过ID查找课程对象
+     * @param id 课程ID
+     * @return 课程
+     */
+    @Query("MATCH(c:Course) WHERE ID(c) = {id} RETURN c")
+    Course findCourseById(@Param("id")Long id);
+
+
 }

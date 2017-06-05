@@ -27,7 +27,12 @@ public class KCourseDaoTest {
     }
 
     @Test
-    public void findCourseById() throws Exception {
+    public void findCourseBySubjectId() throws Exception {
+        System.out.println(kCourseDao.findCourseBySubjectId(3L));
+    }
+
+    @Test
+    public void findCourseById1() throws Exception {
         System.out.println(kCourseDao.findCourseById(3L));
     }
 

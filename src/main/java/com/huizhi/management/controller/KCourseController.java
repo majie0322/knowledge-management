@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.xml.transform.Result;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author onlyo
@@ -35,11 +36,11 @@ public class KCourseController {
         return ResultDtoFactory.toSuccess(courseList);
     }
 
-    @RequestMapping(value = "/findCourseById", method = RequestMethod.POST)
+    @RequestMapping(value = "/findCourseBySubjectId", method = RequestMethod.POST)
     @ApiOperation(value = "根据科目ID查询对应的课程")
-    public ResultDto findCourseById(@RequestBody CourseDto dto){
+    public ResultDto findCourseBySubjectId(@RequestBody CourseDto dto){
         if (dto.getCourseId() != null){
-            return ResultDtoFactory.toSuccess(kCourseService.findCourseById(dto.getCourseId()));
+            return ResultDtoFactory.toSuccess(kCourseService.findCourseBySubjectId(dto.getCourseId()));
         } else {
             return ResultDtoFactory.toError(ResultCode.MISSING_FIELD);
         }
@@ -59,4 +60,18 @@ public class KCourseController {
             return ResultDtoFactory.toError(ResultCode.MISSING_FIELD);
         }
     }
+
+    @RequestMapping(value = "/findRelatedKnowledge", method = RequestMethod.POST)
+    @ApiOperation(value = "查找课程下相关知识点")
+    public ResultDto findRelatedKnowledge(@RequestBody CourseDto dto){
+        if(dto.getTeacherId() != null && dto.getId() != null){
+            List<Long> kIds = kCourseService.recordedId(dto.getTeacherId(), dto.getKnowledgeId(), dto.getId());
+            String key = "Kedit:teacher"+dto.getTeacherId()+dto.getId();
+            Map<String, Object> map = kCourseService.showKnowledge(dto.getId(), dto.getTeacherId(), kIds, dto.getGradeTypes(), dto.getMaxValue(), key);
+            return ResultDtoFactory.toSuccess(map);
+        } else {
+            return ResultDtoFactory.toError(ResultCode.MISSING_FIELD);
+        }
+    }
+
 }
