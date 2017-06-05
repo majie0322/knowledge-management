@@ -39,4 +39,11 @@ public class KCourseServiceImpl implements KCourseService {
         }
     }
 
+    @Override
+    public Course addCourse(Course course) {
+        kCourseDao.save(course);
+        Course c = kCourseDao.findCourseById(course.getCourseId());
+        return c;
+    }
+
 }

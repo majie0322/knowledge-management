@@ -35,11 +35,26 @@ public class KCourseController {
         return ResultDtoFactory.toSuccess(courseList);
     }
 
-    @RequestMapping(value = "/findCourseByCourseId", method = RequestMethod.POST)
+    @RequestMapping(value = "/findCourseById", method = RequestMethod.POST)
     @ApiOperation(value = "根据科目ID查询对应的课程")
     public ResultDto findCourseById(@RequestBody CourseDto dto){
         if (dto.getCourseId() != null){
             return ResultDtoFactory.toSuccess(kCourseService.findCourseById(dto.getCourseId()));
+        } else {
+            return ResultDtoFactory.toError(ResultCode.MISSING_FIELD);
+        }
+    }
+
+    @RequestMapping(value = "/addCourse", method = RequestMethod.POST)
+    @ApiOperation(value = "添加课程")
+    public ResultDto addCourse(@RequestBody CourseDto dto){
+        if(dto != null){
+            Course course  = new Course();
+            course.setName(dto.getName());
+            course.setCourseId(dto.getCourseId());
+            course.setRemark(dto.getRemark());
+            Course c = kCourseService.addCourse(course);
+            return ResultDtoFactory.toSuccess(c);
         } else {
             return ResultDtoFactory.toError(ResultCode.MISSING_FIELD);
         }

@@ -21,4 +21,10 @@ public interface KCourseService {
      * @return
      */
     Course findCourseById(Long courseId);
+
+    /**
+     * 添加课程
+     * @param course 课程
+     */
+    Course addCourse(Course course);
 }

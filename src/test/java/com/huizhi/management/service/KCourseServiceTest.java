@@ -1,5 +1,6 @@
 package com.huizhi.management.service;
 
+import com.huizhi.management.entity.Course;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,15 @@ public class KCourseServiceTest {
     @Test
     public void findCourseById() throws Exception {
         System.out.println(kCourseService.findCourseById(15L));
+    }
+
+    @Test
+    public void addCourse() throws Exception {
+        Course course = new Course();
+        course.setName("测试");
+        course.setCourseId(99L);
+        course.setRemark("");
+        kCourseService.addCourse(course);
     }
 
 }

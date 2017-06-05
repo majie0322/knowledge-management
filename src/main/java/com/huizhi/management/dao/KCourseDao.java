@@ -29,7 +29,7 @@ public interface KCourseDao extends GraphRepository<Course> {
     /**
      * 通过基础库中的课程ID查询neo4j中对应的课程
      * @param courseId 基础库中课程ID
-     * @return
+     * @return 课程
      */
     @Query("MATCH(c:Course) WHERE c.courseId = {courseId} RETURN c")
     Course findCourseById(@Param("courseId")Long courseId);
