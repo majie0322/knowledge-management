@@ -14,6 +14,7 @@ public class KCourseServiceTest {
 
     @Autowired
     private KCourseService kCourseService;
+
     @Test
     public void findAllCourse() throws Exception {
 
