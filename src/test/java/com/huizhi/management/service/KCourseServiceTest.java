@@ -20,4 +20,9 @@ public class KCourseServiceTest {
         System.out.println(kCourseService.findAllCourse());
     }
 
+    @Test
+    public void findCourseById() throws Exception {
+        System.out.println(kCourseService.findCourseById(15L));
+    }
+
 }

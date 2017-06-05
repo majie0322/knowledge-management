@@ -14,4 +14,11 @@ public interface KCourseService {
      * @return 课目集合
      */
     List<Course> findAllCourse();
+
+    /**
+     * 基础基础库中的科目ID查询课程
+     * @param courseId 基础库科目ID
+     * @return
+     */
+    Course findCourseById(Long courseId);
 }

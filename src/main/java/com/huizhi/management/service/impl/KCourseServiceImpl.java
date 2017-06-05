@@ -9,17 +9,34 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class KCourseServiceImpl implements KCourseService{
+public class KCourseServiceImpl implements KCourseService {
 
     @Autowired
     private KCourseDao kCourseDao;
+
     /**
      * 查找所有课目
+     *
      * @return 课目集合
      */
     @Override
     public List<Course> findAllCourse() {
-
         return kCourseDao.findAllCourse();
     }
+
+    /**
+     * 基础基础库中的科目ID查询课程
+     *
+     * @param courseId 基础库科目ID
+     * @return
+     */
+    @Override
+    public Course findCourseById(Long courseId) {
+        if (courseId != null) {
+            return kCourseDao.findCourseById(courseId);
+        } else {
+            return null;
+        }
+    }
+
 }
