@@ -14,4 +14,5 @@ public interface BdTeacherDao {
 	
 	BdTeacher findTeacherByLinkId(Long linkId);
 
+
 }

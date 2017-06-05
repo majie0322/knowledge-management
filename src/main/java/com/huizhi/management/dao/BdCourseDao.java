@@ -10,7 +10,7 @@ import com.huizhi.management.entity.BdCourse;
  * @author onlyo
  */
 @MapperInfo(dbType = DBEnum.MYSQL, env = EnvEnum.TEST, refTable = "bd_course")
-public interface BdCourseDao {
+public interface BdCourseDao{
 
     /**
      * 通过courseId查看课程

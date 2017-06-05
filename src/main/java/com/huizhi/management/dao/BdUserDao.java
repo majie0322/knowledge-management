@@ -10,6 +10,7 @@ import com.huizhi.management.annotation.MapperInfo;
  */
 @MapperInfo(dbType = DBEnum.MYSQL,env = EnvEnum.TEST,refTable = "bd_user")
 public interface BdUserDao {
+
     BdUser findUserById(Long id);
 
     BdUser findUserByName(String username);

@@ -12,14 +12,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * neo4j数据库配置
  */
 @org.springframework.context.annotation.Configuration
-@EnableNeo4jRepositories(basePackages = "com.huizhi.edu.knowledge.dao")
+@EnableNeo4jRepositories(basePackages = "com.huizhi.management.dao")
 @EnableTransactionManagement
 public class MyNeo4jConfig extends Neo4jConfiguration {
 
-    private static String DOMAIN_PACKAGE = "com.huizhi.edu.knowledge.bean";
+    private static String DOMAIN_PACKAGE = "com.huizhi.management.entity";
 
     @Value("${neo4j.driver}")
     private String neoDriverClass ;
+
     @Value("${neo4j.url}")
     private String neoUrl;
 

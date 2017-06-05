@@ -31,7 +31,7 @@ import java.util.Map;
  * @author onlyo
  */
 @RestController
-@Api(value = "登入验证", description = "登入验证", position = 2)
+@Api(value = "登入验证", description = "登入验证", position = 3)
 public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
